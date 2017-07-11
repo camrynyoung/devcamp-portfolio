@@ -32,7 +32,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
+        format.html { redirect_to @blog, notice: 'Your post is now live.' }
       else
         format.html { render :new }
       end
@@ -56,11 +56,11 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+      format.html { redirect_to blogs_url, notice: 'Post was removed.' }
       format.json { head :no_content }
     end
   end
-  
+
   def toggle_status
     if @blog.draft?
       @blog.published!
@@ -79,6 +79,6 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog)
+      params.require(:blog).permit(:title, :body)
     end
 end
