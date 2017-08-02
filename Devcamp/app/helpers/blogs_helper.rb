@@ -23,7 +23,7 @@ module BlogsHelper
     markdown_to_html.render(text).html_safe
   end
   
-  def blog_status_color blog_status_color
-    'color:red' if blog.draft?
+ def blog_status_color blog
+    'color: red;' if blog.draft?
   end
 end
